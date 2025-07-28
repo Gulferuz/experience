@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'home.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -11,8 +10,8 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
-  final List<Widget> widgetOptions =  [
-    HomePage(),
+  final List<Widget> widgetOptions = [
+    Container(),
     Container(),
     Container(),
     Container(),
@@ -28,34 +27,44 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    //  backgroundColor: Colors.black,
+      //  backgroundColor: Colors.black,
       body: SafeArea(child: widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.black,
         type: BottomNavigationBarType.fixed,
         // showSelectedLabels: true,
         // showUnselectedLabels: true,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.blueGrey,
+        selectedItemColor: Color(0xFFF2F2F2),
+        unselectedItemColor: Color(0xFFA6A6A6),
         currentIndex: _selectedIndex,
         // onTap: _onItemTapped,
         items: [
           BottomNavigationBarItem(
-
-              icon: Image.asset('assets/icons/document.png',color: Colors.black,),
-              label:'Contracts',
-          ),BottomNavigationBarItem(
-              icon: Image.asset('assets/icons/document.png'),
-              label:'Contracts',
-          ),BottomNavigationBarItem(
-              icon: Image.asset('assets/icons/document.png'),
-              label:'Contracts',
-          ),BottomNavigationBarItem(
-              icon: Image.asset('assets/icons/document.png'),
-              label:'Contracts',
-          ),BottomNavigationBarItem(
-              icon: Image.asset('assets/icons/document.png'),
-              label:'Contracts',
+            icon: Image.asset(
+              'assets/icons/first.png',
+            ),
+            label: 'Contracts',
+            activeIcon: Image.asset('assets/icons/one.png')
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/icons/second.png'),
+            label: 'History',
+            activeIcon:Image.asset('assets/icons/two.png')
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/icons/third.png'),
+            activeIcon: Image.asset('assets/icons/three.png'),
+            label: 'New',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/icons/four.png'),
+            activeIcon: Image.asset('assets/icons/fourth.png'),
+            label: 'Saved',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/icons/five.png'),
+            activeIcon: Image.asset('assets/icons/fifth.png'),
+            label: 'Profile',
           ),
         ],
       ),

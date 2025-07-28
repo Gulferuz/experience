@@ -12,7 +12,9 @@ class Filters extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color(0xFF141416),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context,'/Contracts');
+          },
           icon: const Icon(Icons.arrow_back),
         ),
         title: Text(

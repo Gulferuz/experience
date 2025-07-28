@@ -1,15 +1,17 @@
-import 'package:experience/Filters.dart';
-import 'package:experience/Search.dart';
+import 'package:experience/filter_page.dart';
+import 'package:experience/search_page.dart';
 import 'package:experience/dashboard_page.dart';
 import 'package:experience/second_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:table_calendar/table_calendar.dart';
+
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {   
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
@@ -19,9 +21,19 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      initialRoute: '/',
+      routes: <String, WidgetBuilder>{
+        '/': (BuildContext context) => Contracts(),
+        '/Contracts': (BuildContext context) => Contracts(),
+        '/Search': (BuildContext context) => Search(),
+        '/Filters': (BuildContext context) => Filters(),
+        '/Second': (BuildContext context) => Second(),
+
+      },
+
       debugShowCheckedModeBanner: false,
-      home: Dashboard(),
+      // home: Contracts(),
     );
   }
 }
@@ -33,12 +45,39 @@ class Contracts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
+        backgroundColor: Colors.black,
+        type: BottomNavigationBarType.fixed,
+        // showSelectedLabels: true,
+        // showUnselectedLabels: true,
+        selectedItemColor: Color(0xFFF2F2F2),
+        unselectedItemColor: Color(0xFFA6A6A6),
+        // onTap: _onItemTapped,
         items: [
           BottomNavigationBarItem(
-              icon: Image.asset('assets/icons/document.png'),
-              label: 'Contracts'),
+              icon: Image.asset(
+                'assets/icons/first.png',
+              ),
+              label: 'Contracts',
+              activeIcon: Image.asset('assets/icons/one.png')),
+          BottomNavigationBarItem(
+              icon: Image.asset('assets/icons/second.png'),
+              label: 'History',
+              activeIcon: Image.asset('assets/icons/two.png')),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/icons/third.png'),
+            activeIcon: Image.asset('assets/icons/three.png'),
+            label: 'New',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/icons/four.png'),
+            activeIcon: Image.asset('assets/icons/fourth.png'),
+            label: 'Saved',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/icons/five.png'),
+            activeIcon: Image.asset('assets/icons/fifth.png'),
+            label: 'Profile',
+          ),
         ],
       ),
       backgroundColor: Colors.black,
@@ -64,10 +103,16 @@ class Contracts extends StatelessWidget {
             ],
           ),
           actions: [
-            Image.asset('assets/icons/filter.png'),
+            GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/Filters');
+                },
+                child: Image.asset('assets/icons/filter.png')),
             Image.asset('assets/icons/line.png'),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/Search');
+              },
               icon: const Icon(Icons.search_outlined),
             ),
           ],
@@ -79,43 +124,49 @@ class Contracts extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Container(
-                  height: 148,
-                  width: 375,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF1E1E20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      'February, 2021',
+                      style: GoogleFonts.ubuntu(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: const Color(0xFFDADADA),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 120,
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        color: Color(0xFFD1D1D1),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        color: Color(0xFFD1D1D1),
+                      ),
+                    ),
+                  ],
+                ),
+                TableCalendar(
+                  // daysOfWeekStyle: DaysOfWeekStyle(
+                  //   weekdayStyle: TextStyle(color: Colors.red),
+                  //   weekendStyle: TextStyle(color: Colors.red),
+                  // ),
+                  calendarStyle: CalendarStyle(
+                    isTodayHighlighted: false,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'February, 2021',
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: const Color(0xFFDADADA),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 120,
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.arrow_back_ios_new_rounded,
-                          color: Color(0xFFD1D1D1),
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          color: Color(0xFFD1D1D1),
-                        ),
-                      ),
-                    ],
-                  ),
+                  calendarFormat: CalendarFormat.week,
+                  headerVisible: false,
+                  firstDay: DateTime.utc(2010, 10, 16),
+                  lastDay: DateTime.utc(2030, 3, 14),
+                  focusedDay: DateTime.now(),
                 ),
                 const SizedBox(
                   height: 8,
@@ -123,7 +174,8 @@ class Contracts extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF00A795),
                       ),
@@ -647,7 +699,9 @@ class Contracts extends StatelessWidget {
                       color: Color(0xFF00A795)),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/Second');
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF00A795),
                   ),
