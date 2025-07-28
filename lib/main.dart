@@ -155,11 +155,35 @@ class Contracts extends StatelessWidget {
                   ],
                 ),
                 TableCalendar(
-                  // daysOfWeekStyle: DaysOfWeekStyle(
-                  //   weekdayStyle: TextStyle(color: Colors.red),
-                  //   weekendStyle: TextStyle(color: Colors.red),
-                  // ),
+                  daysOfWeekStyle: const DaysOfWeekStyle(
+                    weekdayStyle: TextStyle(color: Color(0xFFD2D2D2)),
+                    weekendStyle: TextStyle(color: Color(0xFFD2D2D2)),
+                  ),
                   calendarStyle: CalendarStyle(
+                    todayTextStyle: GoogleFonts.ubuntu(
+                      color: Color(0xFFD2D2D2),
+                    ),
+                    selectedTextStyle: GoogleFonts.ubuntu(
+                      color: Color(0xFFD2D2D2),
+                    ),
+                    rangeEndTextStyle: GoogleFonts.ubuntu(
+                      color: Color(0xFFD2D2D2),
+                    ),
+                    outsideTextStyle: GoogleFonts.ubuntu(
+                      color: Color(0xFFD2D2D2),
+                    ),
+                    defaultTextStyle: GoogleFonts.ubuntu(
+                      color: Color(0xFFD2D2D2),
+                    ),
+                    rangeStartTextStyle: GoogleFonts.ubuntu(
+                      color: Color(0xFFD2D2D2),
+                    ),
+                    withinRangeTextStyle: GoogleFonts.ubuntu(
+                      color: Color(0xFFD2D2D2),
+                    ),
+                    weekendTextStyle: GoogleFonts.ubuntu(
+                      color: Color(0xFFD2D2D2),
+                    ),
                     isTodayHighlighted: false,
                   ),
                   calendarFormat: CalendarFormat.week,
